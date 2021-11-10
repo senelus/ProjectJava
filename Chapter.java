@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Chapter extends Discipline {
-    private ArrayList<Theme> themes;
+    private ArrayList<Theme>  themes;
 
     public Chapter(String title, ArrayList<Theme> themes) {
         super(title);

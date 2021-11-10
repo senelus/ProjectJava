@@ -10,6 +10,13 @@ public class Subject extends Discipline {
         UpdateEquivalentRating();
     }
 
+    public Subject(Subject subject) {
+        super(subject.getTitle());
+        chapters = subject.getChapters();
+        UpdateGrade();
+        UpdateEquivalentRating();
+    }
+
     public void UpdateGrade() {
         double currentGradeSum = 0;
         double maxGradeSum = 0;
@@ -23,6 +30,11 @@ public class Subject extends Discipline {
 
     public ArrayList<Chapter> getChapters() {
         return chapters;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new Subject(this.getTitle(), this.getChapters());
     }
 
     @Override

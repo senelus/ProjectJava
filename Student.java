@@ -4,10 +4,10 @@ public class Student extends Human {
     private ArrayList<Subject> currentSubjects;
     private ArrayList<Subject> indebrednessSubjects;
 
-    public Student(String name, String surname, int age, String cityOfResidents, String status, String education, String work) {
+    public Student(String name, String surname, int age, String cityOfResidents, String status, String education, String work, ArrayList<Subject> currentSubjects,  ArrayList<Subject> indebrednessSubjects) {
         super(name, surname, age, cityOfResidents, status, education, work);
-        currentSubjects = new ArrayList<>();
-        indebrednessSubjects = new ArrayList<>();
+        this.currentSubjects = currentSubjects;
+        this.indebrednessSubjects = indebrednessSubjects;
     }
 
     public ArrayList<Subject> getCurrentSubjects() {
@@ -26,13 +26,6 @@ public class Student extends Human {
         indebrednessSubjects.add(subject);
     }
 
-    public void setCurrentSubjects(ArrayList<Subject> currentSubjects) {
-        this.currentSubjects = currentSubjects;
-    }
-
-    public void setIndebrednessSubjects(ArrayList<Subject> indebrednessSubjects) {
-        this.indebrednessSubjects = indebrednessSubjects;
-    }
 
     @Override
     public String toString() {
