@@ -1,18 +1,11 @@
 import java.util.ArrayList;
 
 public class Subject extends Discipline {
-    private ArrayList<Chapter> chapters;
+    private ArrayList<Theme> themes;
 
-    public Subject(String title, ArrayList<Chapter> chapters) {
+    public Subject(String title, ArrayList<Theme> themes) {
         super(title);
-        this.chapters = chapters;
-        UpdateGrade();
-        UpdateEquivalentRating();
-    }
-
-    public Subject(Subject subject) {
-        super(subject.getTitle());
-        chapters = subject.getChapters();
+        this.themes = themes;
         UpdateGrade();
         UpdateEquivalentRating();
     }
@@ -20,21 +13,16 @@ public class Subject extends Discipline {
     public void UpdateGrade() {
         double currentGradeSum = 0;
         double maxGradeSum = 0;
-        for (var chapter : chapters) {
-            currentGradeSum += chapter.getCurrentOnlineLessonsGrade();
-            maxGradeSum += chapter.getMaxOnlineLessonsGrade();
+        for (var theme : themes) {
+            currentGradeSum += theme.getCurrentOnlineLessonsGrade();
+            maxGradeSum += theme.getMaxOnlineLessonsGrade();
         }
         currentOnlineLessonsGrade = currentGradeSum;
         maxOnlineLessonsGrade = maxGradeSum;
-     }
-
-    public ArrayList<Chapter> getChapters() {
-        return chapters;
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return new Subject(this.getTitle(), this.getChapters());
+    public ArrayList<Theme> getThemes() {
+        return themes;
     }
 
     @Override
@@ -42,11 +30,11 @@ public class Subject extends Discipline {
         UpdateGrade();
         UpdateEquivalentRating();
         var chaptersStringFormat = "";
-        for (int i = 0; i < getChapters().stream().count(); i++) {
-            chaptersStringFormat += getChapters().get(i).toString();
-            if (i < getChapters().stream().count() - 1) chaptersStringFormat += "\n";
+        for (int i = 0; i < getThemes().stream().count(); i++) {
+            chaptersStringFormat += getThemes().get(i).toString();
+            if (i < getThemes().stream().count() - 1) chaptersStringFormat += "\n";
         }
         return new String("    " + getTitle() + " (" + String.valueOf(getCurrentOnlineLessonsGrade()) + " / " + String.valueOf(getMaxOnlineLessonsGrade()) +") "
-                + getEquivalentRating()  + ":" + "\n"  + (!getChapters().isEmpty() ? chaptersStringFormat : "    В данном предмете нет глав"));
+                + getEquivalentRating()  + ":" + "\n"  + (!getThemes().isEmpty() ? chaptersStringFormat : "    В данном предмете нет глав"));
     }
 }

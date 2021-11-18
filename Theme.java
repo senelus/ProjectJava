@@ -26,6 +26,14 @@ public class Theme extends Discipline {
     }
 
     @Override
+    protected Theme clone() {
+        var excer = new ArrayList<Exercise>();
+        for (var exercise : this.getExercises())
+            excer.add(exercise.clone());
+        return new Theme(this.getTitle(), excer);
+    }
+
+    @Override
     public String toString() {
         UpdateGrade();
         UpdateEquivalentRating();

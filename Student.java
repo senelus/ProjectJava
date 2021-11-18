@@ -4,8 +4,20 @@ public class Student extends Human {
     private ArrayList<Subject> currentSubjects;
     private ArrayList<Subject> indebrednessSubjects;
 
-    public Student(String name, String surname, int age, String cityOfResidents, String status, String education, String work, ArrayList<Subject> currentSubjects,  ArrayList<Subject> indebrednessSubjects) {
-        super(name, surname, age, cityOfResidents, status, education, work);
+    public Student(String name, String surname, int id, String birthday, String cityOfResidents, String status, String mobilePhoneNumber, String homePhoneNumber, ArrayList<Subject> currentSubjects, ArrayList<Subject> indebrednessSubjects) {
+        super(name, surname, id, birthday, cityOfResidents, status, mobilePhoneNumber, homePhoneNumber);
+        this.currentSubjects = currentSubjects;
+        this.indebrednessSubjects = indebrednessSubjects;
+    }
+
+    public Student(String name, String surname, ArrayList<Subject> currentSubjects,  ArrayList<Subject> indebrednessSubjects) {
+        super(name, surname, -1, null, null, null, null, null);
+        this.currentSubjects = currentSubjects;
+        this.indebrednessSubjects = indebrednessSubjects;
+    }
+
+    public Student(String name, String surname, int id,ArrayList<Subject> currentSubjects,  ArrayList<Subject> indebrednessSubjects) {
+        super(name, surname, id, null, null, null, null, null);
         this.currentSubjects = currentSubjects;
         this.indebrednessSubjects = indebrednessSubjects;
     }
@@ -41,9 +53,9 @@ public class Student extends Human {
             indebrednessSubjectsStringFormat += indebrednessSubjects.get(i).toString();
             if (i < indebrednessSubjects.stream().count() - 1) indebrednessSubjectsStringFormat += "\n";
         }
-        return new String("Имя: " + getName() + "\n" + "Фамилия: " + getSurname() + "\n" + ((getAge() != 0) ? "Возраст: " + getAge() + "\n" : "")
+        return new String("Имя: " + getName() + "\n" + "Фамилия: " + getSurname() + "\n" + ((getBirthdayDate() != null) ? "День рождения: " + getBirthdayDate() + "\n" : "")
                 + ((getCityOfResidents() != null) ? "Город проживания: " + getCityOfResidents() + "\n"  : "") +  ((getStatus() != null) ? "Статус: " + getStatus() + "\n"  : "")
-                + ((getEducation() != null) ?  "Образование: " + getEducation() + "\n" : "") +  ((getWork() != null) ? "Место работы: " + getWork() + "\n" : "")
+                + ((getMobilePhoneNumber() != null) ?  "Мобильный телефон: " + getMobilePhoneNumber() + "\n" : "") +  ((getHomePhoneNumber() != null) ? "Домашний телефон: " + getHomePhoneNumber() + "\n" : "")
                 + ((!getCurrentSubjects().isEmpty()) ? "Текущие предметы:\n" + subjectsStringFormat + "\n" : "Нет текущих предметов \n")
                 + ((!getIndebrednessSubjects().isEmpty() ? "Долги:\n"  + indebrednessSubjectsStringFormat + "\n" : "Нет текущих долгов по предметам " ))
         );

@@ -1,20 +1,28 @@
 public class Human {
     private String name;
     private String surname;
-    private int age;
+    private String birthdayDate;
+    private int id;
     private String cityOfResidents;
     private String status;
-    private String education;
-    private String work;
+    private String mobilePhoneNumber;
+    private String homePhoneNumber;
 
-    public Human(String name, String surname, int age, String cityOfResidents, String status, String education, String work) {
+    public Human(String name, String surname, int id , String birthdayDate, String cityOfResidents, String status, String mobilePhoneNumber, String homePhoneNumber) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
+        this.id = id;
+        this.birthdayDate = birthdayDate;
         this.cityOfResidents = cityOfResidents;
         this.status = status;
-        this.education = education;
-        this.work = work;
+        this.mobilePhoneNumber = mobilePhoneNumber;
+        this.homePhoneNumber = homePhoneNumber;
+    }
+
+    public Human(String name, String surname, int id) {
+        this.name = name;
+        this.surname = surname;
+        this.id = id;
     }
 
     public String getName() {
@@ -25,8 +33,12 @@ public class Human {
         return surname;
     }
 
-    public int getAge() {
-        return age;
+    public int getId() {
+        return id;
+    }
+
+    public String getBirthdayDate() {
+        return birthdayDate;
     }
 
     public String getCityOfResidents() {
@@ -37,18 +49,18 @@ public class Human {
         return status;
     }
 
-    public String getEducation() {
-        return education;
+    public String getMobilePhoneNumber() {
+        return mobilePhoneNumber;
     }
 
-    public String getWork() {
-        return work;
+    public String getHomePhoneNumber() {
+        return homePhoneNumber;
     }
 
     @Override
     public String toString() {
-        return new String("Имя: " + getName() + "\n" + "Фамилия: " + getSurname() + "\n" + ((getAge() != 0) ? "Возраст: " + getAge() + "\n" : "")
+        return new String("Имя: " + getName() + "\n" + "Фамилия: " + getSurname() + "\n" + ((getBirthdayDate() != null) ? "Дата рождения: " + getBirthdayDate() + "\n" : "")
                 + ((getCityOfResidents() != null) ? "Город проживания: " + getCityOfResidents() + "\n"  : "") +  ((getStatus() != null) ? "Статус: " + getStatus() + "\n"  : "")
-                + ((getEducation() != null) ?  "Образование: " + getEducation() + "\n" : "") +  ((getWork() != null) ? "Место работы: " + getWork() + "\n" : ""));
+                + ((getMobilePhoneNumber() != null) ?  "Мобильный телефон: " + getMobilePhoneNumber() + "\n" : "") +  ((getHomePhoneNumber() != null) ? "Домашний телефон: " + getHomePhoneNumber() + "\n" : ""));
     }
 }
