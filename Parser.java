@@ -9,16 +9,21 @@ abstract public class Parser {
 
     private static ArrayList<Integer> themeIndexes = new ArrayList<Integer>();
 
-    public static ArrayList<Student> createStudentData(String pathCSV, String courseTitle) throws Exception {
-        var humans = VkHumanParser.humanDataParse();
+    public static ArrayList<Student> createStudentData(String pathCSV, String courseTitle, String token, String APIversion, String groupId) throws Exception {
+
+        var vkParser = new VkHumanParser(token, APIversion, groupId);
+        vkParser.createHumansData();
+        var humans = vkParser.getHumans();
         var students = parseCSVtoCourse(pathCSV, courseTitle);
         var studentsData = new ArrayList<Student>();
         for (var student : students) {
             for (var human : humans) {
-                var name = student.getName();
-                var surname = student.getSurname();
-                if (name.equals(human.get("name")) && surname.equals(human.get("surname")))
-                    studentsData.add(new Student(name, surname, Integer.parseInt(human.get("id")), student.getCurrentSubjects(), student.getIndebrednessSubjects()));
+                var studentName = student.getFirst_name();
+                var studentSurname = student.getLast_name();
+                var humanName = human.getFirst_name();
+                var humanSurname = human.getLast_name();
+                if (studentName.equals(humanName) && studentSurname.equals(humanSurname))
+                    studentsData.add(new Student(studentName, studentSurname, human.getId(), human.getBdate(), human.getCity(), human.getMobile_phone(), human.getPhoto_max_orig(), human.getFaculty_name(), human.getUniversity_name(), human.getEducation_form(), human.getCountry(), human.getSite(), human.getSex(), student.getCurrentSubjects(), student.getIndebrednessSubjects()));
             }
         }
         return studentsData;
