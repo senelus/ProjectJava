@@ -16,19 +16,22 @@ abstract public class Parser {
         var humans = vkParser.getHumans();
         var students = parseCSVtoCourse(pathCSV, courseTitle);
         var studentsData = new ArrayList<Student>();
+        var usedID = new ArrayList<Integer>();
         for (var student : students) {
             for (var human : humans) {
                 var studentName = student.getFirst_name();
                 var studentSurname = student.getLast_name();
                 var humanName = human.getFirst_name();
                 var humanSurname = human.getLast_name();
-                if (studentName.equals(humanName) && studentSurname.equals(humanSurname))
-                    studentsData.add(new Student(studentName, studentSurname, human.getId(), human.getBdate(), human.getCity(), human.getMobile_phone(), human.getPhoto_max_orig(), human.getFaculty_name(), human.getUniversity_name(), human.getEducation_form(), human.getCountry(), human.getSite(), human.getSex(), student.getCurrentSubjects(), student.getIndebrednessSubjects()));
+                if (studentName.equals(humanName) && studentSurname.equals(humanSurname)) {
+                    if (!usedID.contains(human.getId()))
+                        studentsData.add(new Student(studentName, studentSurname, human.getId(), human.getBdate(), human.getCity(), human.getMobile_phone(), human.getPhoto_max_orig(), human.getFaculty_name(), human.getUniversity_name(), human.getEducation_form(), human.getCountry(), human.getSite(), human.getSex(), student.getCurrentSubjects(), student.getIndebrednessSubjects()));
+                    usedID.add(human.getId());
+                }
             }
         }
         return studentsData;
     }
-
 
     public static ArrayList<Student> parseCSVtoCourse(String path, String title) throws IOException{
         var csvParser = new CSVParserBuilder().withSeparator(';').build();
