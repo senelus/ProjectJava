@@ -7,11 +7,9 @@ public class Main {
         var courseTitle = "Java курс";
         var studentsData = Parser.createStudentData(pathToCSV, courseTitle, token, APIversion, groupId);
         //System.out.println(studentsData);
-        DataBaseWorker.FillDataBases("vT.db", "nvT.db", studentsData);
-        //System.out.println(studentsData);
-        System.out.println(DataBaseWorker.GetAttributes("jdbc:sqlite:C:\\sqlite\\nvT.db"));
-        System.out.println(DataBaseWorker.GetAttributes("jdbc:sqlite:C:\\sqlite\\vT.db"));
+        //DataBaseWorker.FillDataBases("vT.db", "nvT.db", studentsData);
+        //System.out.println(DataBaseWorker.GetAttributes("jdbc:sqlite:C:\\sqlite\\nvT.db"));
+        //System.out.println(DataBaseWorker.GetAttributes("jdbc:sqlite:C:\\sqlite\\vT.db"));
         //System.out.println(DataBaseWorker.GetStudents("jdbc:sqlite:C:\\sqlite\\vT.db"));
-        //System.out.println(attr);
     }
 }
